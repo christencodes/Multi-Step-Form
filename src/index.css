@@ -1,7 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import "tailwindcss";
 
 html,
 body,
 #root {
   @apply h-full;
+}
+
+@theme {
+  --color-grey500: #9699aa;
+  --color-orange: #ffaf7e;
+  --color-red500: #ee374a;
+  --color-red450: #e96170;
+  --color-red400: #f9818e;
+  --color-purple600: #483eff;
+  --color-purple500: #6259ff;
+  --color-purple400: #928cff;
+  --color-purple200: #d6d9e6;
+  --color-blue950: #022959;
+  --color-blue700: #164a8a;
+  --color-blue300: #abbcff;
+  --color-blue200: #bee2fd;
+  --color-blue100: #eff5ff;
+  --color-blue50: #f8f9ff;
+
+  --font-display: "Ubuntu", sans-serif;
+}
+
+@utility text-preset-1 {
+  @apply font-bold text-[32px] leading-[120%] tracking-normal;
+}
+
+@utility text-preset-2 {
+  @apply font-bold text-[24px] leading-[120%] tracking-normal;
+}
+
+@utility text-preset-3m {
+  @apply font-medium text-[16px] leading-[120%] tracking-normal;
+}
+@utility text-preset-3r {
+  @apply font-normal text-[16px] leading-[150%] tracking-normal;
+}
+
+@utility text-preset-4b {
+  @apply font-bold text-[14px] leading-[120%] tracking-[1px];
+}
+
+@utility text-preset-4m {
+  @apply font-medium text-[14px] leading-[150%] tracking-normal;
+}
+
+@utility text-preset-4r {
+  @apply font-normal text-[14px] leading-[120%] tracking-normal;
+}
+
+@utility text-preset-5 {
+  @apply font-normal text-[12px] leading-[120%] tracking-normal;
 }

@@ -1,32 +1,19 @@
-import Navbar from "./ThemeSwitcher/Navbar";
-import Hero from "./ThemeSwitcher/Hero";
-import Footer from "./ThemeSwitcher/Footer";
-import { createContext, useEffect, useState } from "react";
-
-export const ThemeSwitch = createContext();
+//context container
+//will have multiple steps directed by state
+//if this --> change state
+import FormContainer from "./FormContainer";
+import YourInfo from "./YourInfo";
+import NextButton from "./NextButton";
+import StepDisplay from "./StepDisplay";
 
 function App() {
-  //false - light theme
-  //true - dark theme
-  const [isDark, setIsDark] = useState(false);
-
-  function themeSwitcher() {
-    console.log("switch!");
-    setIsDark(!isDark);
-  }
-
-  useEffect(() => {
-    console.log(`Dark Mode : ${isDark}`);
-  }, [isDark]);
-
   return (
-    <ThemeSwitch.Provider value={{ isDark, themeSwitcher }}>
-      <div className="h-full">
-        <Navbar></Navbar>
-        <Hero></Hero>
-        <Footer></Footer>
-      </div>
-    </ThemeSwitch.Provider>
+    <div className="global h-full flex justify-center items-center bg-purple200 font-display">
+      <FormContainer stepDisplay={<StepDisplay></StepDisplay>}>
+        <YourInfo></YourInfo>
+        <NextButton></NextButton>
+      </FormContainer>
+    </div>
   );
 }
 
