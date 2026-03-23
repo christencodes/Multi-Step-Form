@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useFormProvider } from "./FormObserver";
 
 export default function YourInfo() {
-  const [form, setForm] = useState();
+  const [emailValid, setEmailValid] = useState(false);
+
+  const { setUserInformation } = useFormProvider();
   return (
     <div
       className="flex flex-col gap-6 |
@@ -26,8 +29,11 @@ export default function YourInfo() {
               Name
             </label>
             <input
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-2  border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12"
+              onChange={(e) => {
+                // console.log("name changed!");
+                setUserInformation({ name: e.target.value });
+              }}
+              className="w-full px-4 py-2  border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12 hover:border-purple600 hover:cursor-pointer"
               type="text"
               id="name"
               placeholder="John Smith"
@@ -35,15 +41,23 @@ export default function YourInfo() {
           </div>
           <div className="flex flex-col gap-2">
             {" "}
-            <label
-              className="text-blue950 text-preset-5 md:text-preset-4r"
-              htmlFor="email"
-            >
-              Email Address
-            </label>
+            <div className="flex justify-between">
+              <label
+                className="text-blue950 text-preset-5 md:text-preset-4r"
+                htmlFor="email"
+              >
+                Email Address
+              </label>
+              <p className="text-preset-4b text-red500">
+                {emailValid ? " " : "This field is required"}
+              </p>
+            </div>
             <input
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-2 border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12"
+              onChange={(e) => {
+                setEmailValid(e.target.checkValidity());
+                setUserInformation({ email: e.target.value });
+              }}
+              className={`w-full px-4 py-2 focus:outline-0 text-grey500 text-preset-4m rounded-sm border border-purple200 md:text-preset-3m md:h-12 hover:border-purple600 hover:cursor-pointer invalid:border-red500`}
               type="email"
               id="email"
               placeholder="email@email.com"
@@ -58,9 +72,10 @@ export default function YourInfo() {
             </label>
             <input
               onChange={(e) =>
-                setForm({ ...form, phoneNumber: e.target.value })
+                setUserInformation({ phoneNumber: e.target.value })
               }
-              className="w-full px-4 py-2 border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12"
+              className="w-full px-4 py-2 border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12
+              hover:border-purple600 hover:cursor-pointer "
               type="text"
               id="phoneNumber"
               placeholder="123-1234-1234"

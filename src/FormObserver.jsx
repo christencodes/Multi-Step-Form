@@ -40,19 +40,19 @@ import {
   createContext,
   useContext,
   useState,
-  useEffect,
   useReducer,
+  useEffect,
 } from "react";
 
 //we make the box first
 const FormProvider = createContext();
 
-const stepTable = [
-  { step: 1, type: "PERSONAL_INFO" },
-  { step: 2, type: "SELECT_PLAN" },
-  { step: 3, type: "ADD_ONS" },
-  { step: 4, type: "SUMMARY" },
-];
+// const stepTable = [
+//   { step: 1, type: "PERSONAL_INFO" },
+//   { step: 2, type: "SELECT_PLAN" },
+//   { step: 3, type: "ADD_ONS" },
+//   { step: 4, type: "SUMMARY" },
+// ];
 
 //all of these are called when the next or back button is pressed
 function stepReducer(state, action) {
@@ -82,13 +82,27 @@ export default function FormProviderBuilder({ children }) {
   //children is there because we are returning an element
 
   const [currentStep, setCurrentStep] = useState(1);
-  //holds userInfo
-  const [currentStepInfo, setCurrentStepInfo] = useState({});
 
-  function setStepInfo(info) {
-    setCurrentStepInfo({ ...currentStepInfo, ...info });
+  //?-------------------------------------------------------------------
+  //?-------------------------------------------------------------------
+  //holds userInfo
+  const [userInfo, setUserInfo] = useState({
+    name: " ",
+    email: " ",
+    phoneNumber: 0,
+    plan: 0,
+  });
+
+  function setUserInformation(info) {
+    setUserInfo({ ...userInfo, ...info });
   }
 
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo]);
+
+  //?-------------------------------------------------------------------
+  //?-------------------------------------------------------------------
   const [totalInfo, dispatch] = useReducer(stepReducer, []);
 
   function setPersonalInfo(name, email, phoneNumber) {
@@ -113,11 +127,7 @@ export default function FormProviderBuilder({ children }) {
   return (
     <FormProvider.Provider
       value={{
-        setCurrentStep,
-        totalInfo,
-        setStepInfo,
-        setYearMonth,
-        setPersonalInfo,
+        setUserInformation,
       }}
     >
       {children}
