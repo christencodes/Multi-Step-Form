@@ -5,6 +5,7 @@ false - monthly
 const [plan, setPlan] = useState(false)
 this affects pricing across the entire form -------------------------------------
 
+
 useReducer - states/conditions
 *setPersonalInfo - {name, email, phoneNumber}
 *setPlan - {arcade,advanced, pro}
@@ -34,3 +35,96 @@ reset(),
 }
 
 */
+
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useReducer,
+} from "react";
+
+//we make the box first
+const FormProvider = createContext();
+
+const stepTable = [
+  { step: 1, type: "PERSONAL_INFO" },
+  { step: 2, type: "SELECT_PLAN" },
+  { step: 3, type: "ADD_ONS" },
+  { step: 4, type: "SUMMARY" },
+];
+
+//all of these are called when the next or back button is pressed
+function stepReducer(state, action) {
+  switch (action.type) {
+    case "SET_PERSONAL_INFO": {
+      //Name, Email, PhoneNumber
+      return {
+        name: action.payload.name,
+        email: action.payload.email,
+        phoneNumber: action.payload.phoneNumber,
+      };
+    }
+    case "SET_SELECT_PLAN":
+      break;
+    case "SET_ADD_ONS":
+      break;
+    case "SET_SUMMARY":
+      break;
+    case "RESTART":
+      break;
+    default:
+      return state;
+  }
+}
+
+export default function FormProviderBuilder({ children }) {
+  //children is there because we are returning an element
+
+  const [currentStep, setCurrentStep] = useState(1);
+  //holds userInfo
+  const [currentStepInfo, setCurrentStepInfo] = useState({});
+
+  function setStepInfo(info) {
+    setCurrentStepInfo({ ...currentStepInfo, ...info });
+  }
+
+  const [totalInfo, dispatch] = useReducer(stepReducer, []);
+
+  function setPersonalInfo(name, email, phoneNumber) {
+    dispatch({
+      type: "SET_PERSONAL_INFO",
+      payload: { name, email, phoneNumber },
+    });
+  }
+
+  // //this will hold which step we are on
+  // const [currentStep, setCurrentStep] = useState("PERSONAL_INFO");
+  //true - month
+  //false - year
+  const [yearOrMonth, setYearOrMonth] = useState(true);
+
+  function setYearMonth() {
+    setYearOrMonth(!yearOrMonth);
+  }
+
+  //they need to know which step we are on
+  //nextButton needs to react based on step
+  return (
+    <FormProvider.Provider
+      value={{
+        setCurrentStep,
+        totalInfo,
+        setStepInfo,
+        setYearMonth,
+        setPersonalInfo,
+      }}
+    >
+      {children}
+    </FormProvider.Provider>
+  );
+}
+
+export function useFormProvider() {
+  return useContext(FormProvider);
+}

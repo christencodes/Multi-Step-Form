@@ -6,14 +6,19 @@ import YourInfo from "./YourInfo";
 import NextButton from "./NextButton";
 import StepDisplay from "./StepDisplay";
 
+import FormProviderBuilder from "./FormObserver";
+import { useState } from "react";
+
 function App() {
   return (
-    <div className="global h-full flex justify-center items-center bg-purple200 font-display">
-      <FormContainer stepDisplay={<StepDisplay></StepDisplay>}>
-        <YourInfo></YourInfo>
-        <NextButton></NextButton>
-      </FormContainer>
-    </div>
+    <FormProviderBuilder>
+      <div className="global h-full flex justify-center items-center bg-purple200 font-display">
+        <FormContainer stepDisplay={<StepDisplay></StepDisplay>}>
+          <YourInfo></YourInfo>
+          <NextButton></NextButton>
+        </FormContainer>
+      </div>
+    </FormProviderBuilder>
   );
 }
 

@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 export default function YourInfo() {
+  const [form, setForm] = useState();
   return (
     <div
       className="flex flex-col gap-6 |
@@ -23,6 +26,7 @@ export default function YourInfo() {
               Name
             </label>
             <input
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
               className="w-full px-4 py-2  border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12"
               type="text"
               id="name"
@@ -38,6 +42,7 @@ export default function YourInfo() {
               Email Address
             </label>
             <input
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
               className="w-full px-4 py-2 border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12"
               type="email"
               id="email"
@@ -52,6 +57,9 @@ export default function YourInfo() {
               Phone Number
             </label>
             <input
+              onChange={(e) =>
+                setForm({ ...form, phoneNumber: e.target.value })
+              }
               className="w-full px-4 py-2 border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12"
               type="text"
               id="phoneNumber"
