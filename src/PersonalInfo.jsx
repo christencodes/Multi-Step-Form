@@ -4,8 +4,11 @@ import { useFormProvider } from "./FormObserver";
 export default function YourInfo() {
   const [emailValid, setEmailValid] = useState(false);
 
-  const { setUserInformation } = useFormProvider();
-  return (
+  const { setPersonalInfo, currentStep, totalInfo } = useFormProvider();
+
+  console.log("this");
+  console.log(!totalInfo);
+  return currentStep === 1 ? (
     <div
       className="flex flex-col gap-6 |
     md:max-w-87 md:gap-8 md:self-start md:pt-8 "
@@ -31,12 +34,13 @@ export default function YourInfo() {
             <input
               onChange={(e) => {
                 // console.log("name changed!");
-                setUserInformation({ name: e.target.value });
+                setPersonalInfo({ name: e.target.value });
               }}
               className="w-full px-4 py-2  border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12 hover:border-purple600 hover:cursor-pointer"
               type="text"
               id="name"
               placeholder="John Smith"
+              value={totalInfo.name ?? ""}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -55,12 +59,13 @@ export default function YourInfo() {
             <input
               onChange={(e) => {
                 setEmailValid(e.target.checkValidity());
-                setUserInformation({ email: e.target.value });
+                setPersonalInfo({ email: e.target.value });
               }}
               className={`w-full px-4 py-2 focus:outline-0 text-grey500 text-preset-4m rounded-sm border border-purple200 md:text-preset-3m md:h-12 hover:border-purple600 hover:cursor-pointer invalid:border-red500`}
               type="email"
               id="email"
               placeholder="email@email.com"
+              value={totalInfo.email ?? ""}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -71,18 +76,19 @@ export default function YourInfo() {
               Phone Number
             </label>
             <input
-              onChange={(e) =>
-                setUserInformation({ phoneNumber: e.target.value })
-              }
+              onChange={(e) => setPersonalInfo({ phoneNumber: e.target.value })}
               className="w-full px-4 py-2 border border-purple200 focus:outline-0 text-grey500 text-preset-4m rounded-sm md:text-preset-3m md:h-12
               hover:border-purple600 hover:cursor-pointer "
               type="text"
               id="phoneNumber"
               placeholder="123-1234-1234"
+              value={totalInfo.phoneNumber ?? ""}
             />
           </div>
         </form>
       </div>
     </div>
+  ) : (
+    " "
   );
 }

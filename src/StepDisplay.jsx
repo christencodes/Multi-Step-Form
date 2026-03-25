@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useFormProvider } from "./FormObserver";
 
 export default function StepDisplay() {
   // Remember to update this state on form change
+  const { currentStep } = useFormProvider();
   const [active, setActive] = useState(1);
 
   const steps = [
@@ -17,7 +19,7 @@ export default function StepDisplay() {
         return (
           <div className="flex gap-3">
             <div
-              className={`${active === step.step ? "bg-blue200 text-blue950!" : ""} w-10 border-blue200 border rounded-full flex justify-center items-center text-preset-4b text-white`}
+              className={`${currentStep === step.step ? "bg-blue200 text-blue950!" : ""} w-10 border-blue200 border rounded-full flex justify-center items-center text-preset-4b text-white`}
             >
               {step.step}
             </div>

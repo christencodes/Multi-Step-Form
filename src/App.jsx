@@ -2,10 +2,14 @@
 //will have multiple steps directed by state
 //if this --> change state
 import FormContainer from "./FormContainer";
+
 import YourInfo from "./PersonalInfo";
 import Plan from "./Plan";
-import NextButton from "./NextButton";
+import AddOns from "./AddOns";
+
 import StepDisplay from "./StepDisplay";
+import NextButton from "./NextButton";
+import BackButton from "./BackButton";
 
 import FormProviderBuilder from "./FormObserver";
 
@@ -14,9 +18,13 @@ function App() {
     <FormProviderBuilder>
       <div className="global h-full flex justify-center items-center bg-purple200 font-display">
         <FormContainer stepDisplay={<StepDisplay></StepDisplay>}>
-          {/* <YourInfo></YourInfo> */}
+          <YourInfo></YourInfo>
           <Plan></Plan>
-          <NextButton></NextButton>
+          <AddOns></AddOns>
+          <div className="flex justify-between">
+            <BackButton></BackButton>
+            <NextButton></NextButton>
+          </div>
         </FormContainer>
       </div>
     </FormProviderBuilder>
