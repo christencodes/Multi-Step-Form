@@ -1,7 +1,7 @@
 import { useFormProvider } from "./FormObserver";
 
 export default function AddOns() {
-  const { currentStep, setAddOns, totalInfo } = useFormProvider();
+  const { currentStep, setAddOns, totalInfo, yearMonth } = useFormProvider();
   return currentStep === 3 ? (
     <div
       className="flex flex-col gap-6 |
@@ -33,7 +33,9 @@ export default function AddOns() {
             </p>
           </div>
           <div>
-            <p className="text-preset-5 text-purple600">+$1/mo</p>
+            <p className="text-preset-5 text-purple600">
+              {yearMonth ? "$10/yr" : "$1/mo"}
+            </p>
           </div>
         </div>
 
@@ -53,7 +55,9 @@ export default function AddOns() {
             </p>
           </div>
           <div>
-            <p className="text-preset-5 text-purple600">+$1/mo</p>
+            <p className="text-preset-5 text-purple600">
+              {yearMonth ? "$20/yr" : "$2/mo"}
+            </p>
           </div>
         </div>
 
@@ -75,7 +79,9 @@ export default function AddOns() {
             </p>
           </div>
           <div>
-            <p className="text-preset-5 text-purple600 ">+$1/mo</p>
+            <p className="text-preset-5 text-purple600 ">
+              {yearMonth ? "$20/yr" : "$2/mo"}
+            </p>
           </div>
         </div>
       </div>

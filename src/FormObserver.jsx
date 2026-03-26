@@ -98,6 +98,7 @@ export default function FormProviderBuilder({ children }) {
         currentStep,
         setYearOrMonth,
         totalInfo,
+        yearMonth,
       }}
     >
       {children}

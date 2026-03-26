@@ -14,16 +14,16 @@ export default function StepDisplay() {
   ];
 
   return (
-    <div className="flex flex-col gap-8 ">
+    <div className="lg:flex lg:flex-col lg:gap-8 md:flex md:flex-col md:gap-8 flex py-4 ">
       {steps.map((step) => {
         return (
-          <div className="flex gap-3">
+          <div className="flex gap-3 ">
             <div
               className={`${currentStep === step.step ? "bg-blue200 text-blue950!" : ""} w-10 border-blue200 border rounded-full flex justify-center items-center text-preset-4b text-white`}
             >
               {step.step}
             </div>
-            <div>
+            <div className="hidden">
               <p className="text-blue300 uppercase">Step {step.step}</p>
               <p className="uppercase text-preset-4b text-white">
                 {step.label}

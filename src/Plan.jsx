@@ -46,7 +46,7 @@ export default function Plan() {
             <h3 className="text-blue950 text-preset-3m">Arcade</h3>
             <p className="text-preset-4r text-grey500">
               {""}
-              {yearMonth ? "$9/mo" : "$90/yr"}
+              {yearMonth ? "$90/yr" : "$9/mo"}
             </p>
           </div>
         </label>
@@ -71,7 +71,7 @@ export default function Plan() {
             <h3 className="text-blue950 text-preset-3m">Advanced</h3>
             <p className="text-preset-4r text-grey500">
               {""}
-              {yearMonth ? "" : "$12/mo"}
+              {yearMonth ? "$120/yr" : "$12/mo"}
             </p>
           </div>
         </label>
@@ -96,7 +96,7 @@ export default function Plan() {
             <h3 className="text-blue950 text-preset-3m">Pro</h3>
             <p className="text-preset-4r text-grey500">
               {""}
-              {yearMonth ? "" : "$15/mo"}
+              {yearMonth ? "$150/yr" : "$15/mo"}
             </p>
           </div>
         </label>
@@ -106,6 +106,7 @@ export default function Plan() {
           {/* the label acts as a container/hitbox - anything you click inside this tag automatically triggers the checkbox it wraps */}
           <label className="toggle relative h-5 w-9.5 order-2 peer">
             <input
+              checked={yearMonth}
               onChange={(e) => setYearOrMonth(e.target.checked)}
               className=" absolute opacity-0 w-full h-full peer"
               type="checkbox"
