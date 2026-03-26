@@ -30,6 +30,12 @@ function stepReducer(state, action) {
 export default function FormProviderBuilder({ children }) {
   //children is there because we are returning an element
 
+  const [filled, setFilled] = useState(false);
+
+  function setIsFilled(x) {
+    setFilled(x);
+  }
+
   const [currentStep, setCurrentStep] = useState(1);
   const [yearMonth, setYearMonth] = useState(false);
 
@@ -52,6 +58,7 @@ export default function FormProviderBuilder({ children }) {
       ? setCurrentStep((prev) => prev - 1)
       : setCurrentStep(currentStep);
   }
+
   useEffect(() => {
     console.log(currentStep);
   }, [currentStep]);
@@ -99,6 +106,8 @@ export default function FormProviderBuilder({ children }) {
         setYearOrMonth,
         totalInfo,
         yearMonth,
+        filled,
+        setIsFilled,
       }}
     >
       {children}

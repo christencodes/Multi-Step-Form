@@ -4,11 +4,11 @@ import { useFormProvider } from "./FormObserver";
 export default function YourInfo() {
   const [emailValid, setEmailValid] = useState(false);
 
-  const { setPersonalInfo, currentStep, totalInfo } = useFormProvider();
+  const { setPersonalInfo, currentStep, totalInfo, filled } = useFormProvider();
 
   console.log("this");
   console.log(!totalInfo);
-  return currentStep === 1 ? (
+  return currentStep === 1 && !filled ? (
     <div
       className="flex flex-col gap-6 |
     md:max-w-87 md:gap-8 md:self-start md:pt-8 "

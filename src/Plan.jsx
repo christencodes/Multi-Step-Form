@@ -6,14 +6,14 @@ import { useFormProvider } from "./FormObserver";
 import { useRef } from "react";
 
 export default function Plan() {
-  const { currentStep, setPlan, yearMonth, setYearOrMonth, totalInfo } =
+  const { currentStep, setPlan, yearMonth, setYearOrMonth, totalInfo, filled } =
     useFormProvider();
 
   const arcadeRef = useRef();
   const advancedRef = useRef();
   const proRef = useRef();
 
-  return currentStep === 2 ? (
+  return currentStep === 2 && !filled ? (
     <div
       className="flex flex-col gap-6 |
     md:max-w-87 md:gap-8 md:self-start md:pt-8 "

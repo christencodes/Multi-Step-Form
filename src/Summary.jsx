@@ -2,7 +2,7 @@ import { useFormProvider } from "./FormObserver";
 import { Prices } from "./Prices";
 
 export default function Summary() {
-  const { currentStep, totalInfo, yearMonth } = useFormProvider();
+  const { currentStep, totalInfo, yearMonth, filled } = useFormProvider();
 
   const addOns = [
     [totalInfo.online_service, "Online Service"],
@@ -15,9 +15,9 @@ export default function Summary() {
     [totalInfo.advanced, "Advanced"],
     [totalInfo.pro, "Pro"],
   ];
-  return currentStep === 4 ? (
+  return currentStep === 4 && !filled ? (
     <div
-      className="flex flex-col gap-6 max-h-[365px] border |
+      className="flex flex-col gap-6 max-h-91.25  |
     md:max-w-87 md:gap-8 md:self-start md:pt-8 "
     >
       <div className="header flex flex-col gap-2">

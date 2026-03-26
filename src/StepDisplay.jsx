@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useFormProvider } from "./FormObserver";
 
 export default function StepDisplay() {
   // Remember to update this state on form change
   const { currentStep } = useFormProvider();
-  const [active, setActive] = useState(1);
 
   const steps = [
     { step: 1, label: "your info" },
@@ -14,16 +12,16 @@ export default function StepDisplay() {
   ];
 
   return (
-    <div className="lg:flex lg:flex-col lg:gap-8 md:flex md:flex-col md:gap-8 flex py-4 ">
+    <div className="lg:flex lg:flex-col lg:gap-8 md:flex md:flex-col md:gap-8 flex py-4 gap-4 mt-5 ">
       {steps.map((step) => {
         return (
           <div className="flex gap-3 ">
             <div
-              className={`${currentStep === step.step ? "bg-blue200 text-blue950!" : ""} w-10 border-blue200 border rounded-full flex justify-center items-center text-preset-4b text-white`}
+              className={`${currentStep === step.step ? "bg-blue200 text-blue950!" : ""} w-8.25 h-8.25 border-blue200 border rounded-full flex justify-center items-center text-preset-4b text-white`}
             >
               {step.step}
             </div>
-            <div className="hidden">
+            <div className="lg:block md:block  hidden">
               <p className="text-blue300 uppercase">Step {step.step}</p>
               <p className="uppercase text-preset-4b text-white">
                 {step.label}
